@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Recycle, Truck, BarChart, Leaf, MapPin, AlertTriangle } from 'lucide-react'
+import { Recycle, Truck, BarChart, Leaf,  } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 export default function LandingPage() {

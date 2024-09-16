@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Recycle, Mail, Lock, User, ArrowRight } from 'lucide-react'
+import { Recycle, Mail, Lock, User } from 'lucide-react'
 import Link from 'next/link'
 
 export default function AuthPage() {
