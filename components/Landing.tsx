@@ -1,15 +1,35 @@
-'use client'
-import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Recycle, Truck, BarChart, Leaf,  } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+'use client';
+import { useState } from 'react';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Recycle, Truck, BarChart, Leaf } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+
+// Type definitions for components
+interface FeatureCardProps {
+    icon: React.ReactNode;
+    title: string;
+    description: string;
+}
+
+interface ServiceCardProps {
+    title: string;
+    description: string;
+    features: string[];
+}
+
+interface ImpactCardProps {
+    title: string;
+    value: string;
+    description: string;
+}
 
 export default function LandingPage() {
-    const [activeTab, setActiveTab] = useState("home")
+    const [activeTab, setActiveTab] = useState<string>('home');
     const router = useRouter();
+
     return (
         <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-100 text-black">
             <header className="p-4 bg-white shadow-md">
@@ -22,13 +42,13 @@ export default function LandingPage() {
                         <Button variant="ghost">About</Button>
                         <Button variant="ghost">Services</Button>
                         <Button variant="ghost">Contact</Button>
-                        <Button onClick={()=>router.push('/auth')}>Get Started</Button>
+                        <Button onClick={() => router.push('/auth')}>Get Started</Button>
                     </div>
                 </nav>
             </header>
 
             <main className="container mx-auto mt-8 p-4">
-                <section className="text-center mb-12 ">
+                <section className="text-center mb-12">
                     <h1 className="text-5xl font-bold mb-4">Revolutionizing Waste Management</h1>
                     <p className="text-xl text-gray-600 mb-8">Smart solutions for a cleaner, greener future</p>
                     <div className="flex justify-center space-x-4">
@@ -166,45 +186,42 @@ export default function LandingPage() {
                 </div>
             </footer>
         </div>
-    )
+    );
 }
-//@ts-ignore
-function FeatureCard({ icon, title, description }) {
+
+// FeatureCard component
+function FeatureCard({ icon, title, description }: FeatureCardProps) {
     return (
         <div className="bg-white p-6 rounded-lg shadow-lg text-center">
             <div className="flex justify-center mb-4">{icon}</div>
             <h3 className="text-xl font-bold mb-2">{title}</h3>
             <p className="text-gray-600">{description}</p>
         </div>
-    )
+    );
 }
-//@ts-ignore
-function ServiceCard({ title, description, features }) {
+
+// ServiceCard component
+function ServiceCard({ title, description, features }: ServiceCardProps) {
     return (
         <div className="bg-white p-6 rounded-lg shadow-lg">
             <h3 className="text-xl font-bold mb-2">{title}</h3>
             <p className="text-gray-600 mb-4">{description}</p>
-            <ul className="space-y-2">
-                
-                {features.map((feature:any, index:any) => (
-                    <li key={index} className="flex items-center">
-                        <Badge variant="secondary" className="mr-2">
-                            <Leaf className="h-4 w-4" />
-                        </Badge>
-                        {feature}
-                    </li>
+            <ul className="list-disc list-inside space-y-2">
+                {features.map((feature, index) => (
+                    <li key={index}>{feature}</li>
                 ))}
             </ul>
         </div>
-    )
+    );
 }
-//@ts-ignore
-function ImpactCard({ title, value, description }) {
+
+// ImpactCard component
+function ImpactCard({ title, value, description }: ImpactCardProps) {
     return (
-        <div className="bg-green-100 p-6 rounded-lg text-center">
+        <div className="bg-white p-6 rounded-lg shadow-lg text-center">
             <h3 className="text-xl font-bold mb-2">{title}</h3>
-            <p className="text-3xl font-bold text-green-600 mb-2">{value}</p>
+            <p className="text-4xl font-bold text-green-600 mb-2">{value}</p>
             <p className="text-gray-600">{description}</p>
         </div>
-    )
+    );
 }
