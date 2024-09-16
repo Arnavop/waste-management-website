@@ -168,7 +168,7 @@ export default function LandingPage() {
         </div>
     )
 }
-
+//@ts-ignore
 function FeatureCard({ icon, title, description }) {
     return (
         <div className="bg-white p-6 rounded-lg shadow-lg text-center">
@@ -178,14 +178,15 @@ function FeatureCard({ icon, title, description }) {
         </div>
     )
 }
-
+//@ts-ignore
 function ServiceCard({ title, description, features }) {
     return (
         <div className="bg-white p-6 rounded-lg shadow-lg">
             <h3 className="text-xl font-bold mb-2">{title}</h3>
             <p className="text-gray-600 mb-4">{description}</p>
             <ul className="space-y-2">
-                {features.map((feature, index) => (
+                
+                {features.map((feature:any, index:any) => (
                     <li key={index} className="flex items-center">
                         <Badge variant="secondary" className="mr-2">
                             <Leaf className="h-4 w-4" />
@@ -197,7 +198,7 @@ function ServiceCard({ title, description, features }) {
         </div>
     )
 }
-
+//@ts-ignore
 function ImpactCard({ title, value, description }) {
     return (
         <div className="bg-green-100 p-6 rounded-lg text-center">
