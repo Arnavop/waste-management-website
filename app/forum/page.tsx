@@ -8,7 +8,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Recycle, MessageSquare, ThumbsUp, Calendar, User } from 'lucide-react'
+import { MessageSquare, ThumbsUp, Calendar } from 'lucide-react'
 
 type Post = {
   id: number;
