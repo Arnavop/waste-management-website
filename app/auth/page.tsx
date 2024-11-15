@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Recycle, Mail, Lock, User } from 'lucide-react'
+import { Recycle, Mail, Lock } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
@@ -68,49 +68,58 @@ export default function AuthPage() {
             <TabsTrigger value="signup">Sign Up</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="login">
-            <form onSubmit={handleLogin} className="space-y-4">
+          <TabsContent value="signup">
+            <form onSubmit={handleSignup} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="loginEmail">Email</Label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                  <Input
-                    id="loginEmail"
-                    type="email"
-                    placeholder="user@example.com"
-                    value={loginEmail}
-                    onChange={(e) => setLoginEmail(e.target.value)}
-                    className="pl-10"
-                    required
-                  />
-                </div>
+                <Label htmlFor="signupName">Name</Label>
+                <Input
+                  id="signupName"
+                  type="text"
+                  placeholder="Your Name"
+                  value={signupName}
+                  onChange={(e) => setSignupName(e.target.value)}
+                  required
+                />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="loginPassword">Password</Label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                  <Input
-                    id="loginPassword"
-                    type="password"
-                    placeholder="password123"
-                    value={loginPassword}
-                    onChange={(e) => setLoginPassword(e.target.value)}
-                    className="pl-10"
-                    required
-                  />
-                </div>
+                <Label htmlFor="signupEmail">Email</Label>
+                <Input
+                  id="signupEmail"
+                  type="email"
+                  placeholder="you@example.com"
+                  value={signupEmail}
+                  onChange={(e) => setSignupEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="signupPassword">Password</Label>
+                <Input
+                  id="signupPassword"
+                  type="password"
+                  placeholder="Create a password"
+                  value={signupPassword}
+                  onChange={(e) => setSignupPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="signupConfirmPassword">Confirm Password</Label>
+                <Input
+                  id="signupConfirmPassword"
+                  type="password"
+                  placeholder="Confirm your password"
+                  value={signupConfirmPassword}
+                  onChange={(e) => setSignupConfirmPassword(e.target.value)}
+                  required
+                />
               </div>
               <Button type="submit" className="w-full bg-green-600 hover:bg-green-700">
-                Log In
+                Sign Up
               </Button>
             </form>
-            <div className="mt-4 text-center">
-              <Link href="#" className="text-sm text-green-600 hover:underline">
-                Forgot your password?
-              </Link>
-            </div>
           </TabsContent>
-          
+
         </Tabs>
 
         <div className="mt-8 text-center">

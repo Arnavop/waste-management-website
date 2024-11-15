@@ -79,7 +79,7 @@ export default function Component() {
                 <div className="grid gap-6 p-6">
                     <div className="grid gap-2">
                         <h1 className="text-2xl font-bold tracking-tight text-green-800">Welcome back!</h1>
-                        <p className="text-green-600">Here's an overview of your waste management activities</p>
+                        <p>Here&apos;s an overview of your waste management activities</p>
                     </div>
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                         <Card className="border-green-200 bg-green-50">
@@ -122,7 +122,7 @@ export default function Component() {
                             </CardHeader>
                             <CardContent>
                                 <p className="text-2xl font-bold text-green-700">1,250 pts</p>
-                                <Button className="mt-4 w-full bg-green-600 text-white hover:bg-green-700" variant="default" onClick={()=>router.push('/redeem-rewards')}>
+                                <Button className="mt-4 w-full bg-green-600 text-white hover:bg-green-700" variant="default" onClick={() => router.push('/redeem-rewards')}>
                                     Redeem Rewards
                                 </Button>
                             </CardContent>
@@ -161,7 +161,7 @@ export default function Component() {
                                         </Link>
                                     </div>
                                 </div>
-                                <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50" onClick={()=>router.push('/forum')}>Visit Forum</Button>
+                                <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50" onClick={() => router.push('/forum')}>Visit Forum</Button>
                             </div>
                         </CardContent>
                     </Card>

@@ -32,7 +32,7 @@ export default function RedeemRewards() {
             <Award className="h-12 w-12 text-green-600" />
           </div>
           <Progress className="mt-4" value={62.5} />
-          <p className="mt-2 text-sm text-green-600">You're 750 points away from reaching the next tier!</p>
+          <p>You&apos;re 750 points away from reaching the next tier!</p>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <Card className="border-green-200">
