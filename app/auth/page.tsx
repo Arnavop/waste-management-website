@@ -7,8 +7,10 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Recycle, Mail, Lock, User } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 export default function AuthPage() {
+  const router = useRouter()
   const [activeTab, setActiveTab] = useState("login")
   const [loginEmail, setLoginEmail] = useState("")
   const [loginPassword, setLoginPassword] = useState("")
@@ -16,17 +18,34 @@ export default function AuthPage() {
   const [signupEmail, setSignupEmail] = useState("")
   const [signupPassword, setSignupPassword] = useState("")
   const [signupConfirmPassword, setSignupConfirmPassword] = useState("")
+  const [error, setError] = useState("")
+
+  // Sample credentials
+  const SAMPLE_EMAIL = "user@example.com"
+  const SAMPLE_PASSWORD = "password123"
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically handle the login logic
-    console.log("Login attempted with:", { loginEmail, loginPassword })
+    setError("")
+
+    // Check if credentials match sample data
+    if (loginEmail === SAMPLE_EMAIL && loginPassword === SAMPLE_PASSWORD) {
+      // Successful login
+      console.log("Login successful")
+      router.push('/home')
+    } else {
+      // Failed login
+      setError("Invalid credentials. Use user@example.com / password123")
+    }
   }
 
   const handleSignup = (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically handle the signup logic
-    console.log("Signup attempted with:", { signupName, signupEmail, signupPassword, signupConfirmPassword })
+    if (signupPassword !== signupConfirmPassword) {
+      setError("Passwords do not match")
+      return
+    }
+    console.log("Signup attempted with:", { signupName, signupEmail, signupPassword })
   }
 
   return (
@@ -36,6 +55,12 @@ export default function AuthPage() {
           <Recycle className="h-10 w-10 text-green-600 mr-2" />
           <span className="text-3xl font-bold text-green-800">EcoSort</span>
         </div>
+
+        {error && (
+          <div className="mb-4 p-2 text-sm text-red-600 bg-red-50 rounded border border-red-200">
+            {error}
+          </div>
+        )}
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-8">
@@ -52,7 +77,7 @@ export default function AuthPage() {
                   <Input
                     id="loginEmail"
                     type="email"
-                    placeholder="you@example.com"
+                    placeholder="user@example.com"
                     value={loginEmail}
                     onChange={(e) => setLoginEmail(e.target.value)}
                     className="pl-10"
@@ -67,7 +92,7 @@ export default function AuthPage() {
                   <Input
                     id="loginPassword"
                     type="password"
-                    placeholder="••••••••"
+                    placeholder="password123"
                     value={loginPassword}
                     onChange={(e) => setLoginPassword(e.target.value)}
                     className="pl-10"
@@ -85,74 +110,7 @@ export default function AuthPage() {
               </Link>
             </div>
           </TabsContent>
-
-          <TabsContent value="signup">
-            <form onSubmit={handleSignup} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="signupName">Full Name</Label>
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                  <Input
-                    id="signupName"
-                    type="text"
-                    placeholder="John Doe"
-                    value={signupName}
-                    onChange={(e) => setSignupName(e.target.value)}
-                    className="pl-10"
-                    required
-                  />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="signupEmail">Email</Label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                  <Input
-                    id="signupEmail"
-                    type="email"
-                    placeholder="you@example.com"
-                    value={signupEmail}
-                    onChange={(e) => setSignupEmail(e.target.value)}
-                    className="pl-10"
-                    required
-                  />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="signupPassword">Password</Label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                  <Input
-                    id="signupPassword"
-                    type="password"
-                    placeholder="••••••••"
-                    value={signupPassword}
-                    onChange={(e) => setSignupPassword(e.target.value)}
-                    className="pl-10"
-                    required
-                  />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="signupConfirmPassword">Confirm Password</Label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                  <Input
-                    id="signupConfirmPassword"
-                    type="password"
-                    placeholder="••••••••"
-                    value={signupConfirmPassword}
-                    onChange={(e) => setSignupConfirmPassword(e.target.value)}
-                    className="pl-10"
-                    required
-                  />
-                </div>
-              </div>
-              <Button type="submit" className="w-full bg-green-600 hover:bg-green-700">
-                Sign Up
-              </Button>
-            </form>
-          </TabsContent>
+          
         </Tabs>
 
         <div className="mt-8 text-center">
